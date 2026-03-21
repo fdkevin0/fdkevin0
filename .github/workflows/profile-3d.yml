@@ -17,7 +17,10 @@ jobs:
 
       - uses: yoshi389111/github-profile-3d-contrib@latest
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Create a PAT secret named MY_PERSONAL_ACCESS_TOKEN to include
+          # additional private-repository activity; otherwise this falls back
+          # to the default workflow token.
+          GITHUB_TOKEN: ${{ secrets.MY_PERSONAL_ACCESS_TOKEN || secrets.GITHUB_TOKEN }}
           USERNAME: ${{ github.repository_owner }}
 
       - name: Commit & Push
